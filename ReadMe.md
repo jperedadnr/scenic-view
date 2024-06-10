@@ -8,33 +8,33 @@ This lets you find bugs, and get things pixel perfect without having to do the c
 
 ## Build status
 
-Builds for JDK 11 for Windows, Linux, and MacOS are built by Azure Pipelines. The status of these builds is shown below:
+Builds for JDK 21 for Windows, Linux, and MacOS are built by GitHub Actinos. The status of these builds is shown below:
 
-| Platform | Status | Download for JDK 11 |
-|----------|--------|---------------------|
-| Windows  | [![Build Status](https://jonathangiles.visualstudio.com/Scenic%20View/_apis/build/status/Scenic%20View%20-%20JDK%2011%20-%20Windows)](https://jonathangiles.visualstudio.com/Scenic%20View/_build/latest?definitionId=5) | [Download](https://download.jonathangiles.net/downloads/scenic-view/scenicview-win.zip) 
-| MacOS  | [![Build Status](https://jonathangiles.visualstudio.com/Scenic%20View/_apis/build/status/Scenic%20View%20-%20JDK%2011%20-%20macOS)](https://jonathangiles.visualstudio.com/Scenic%20View/_build/latest?definitionId=7) | [Download](https://download.jonathangiles.net/downloads/scenic-view/scenicview-mac.zip) |
-| Linux  | [![Build Status](https://jonathangiles.visualstudio.com/Scenic%20View/_apis/build/status/Scenic%20View%20-%20JDK%2011%20-%20Linux)](https://jonathangiles.visualstudio.com/Scenic%20View/_build/latest?definitionId=6) | [Download](https://download.jonathangiles.net/downloads/scenic-view/scenicview-linux.zip) |
+| Platform | Download for JDK 21                                                                           |
+|----------|-----------------------------------------------------------------------------------------------|
+| Windows  | [Download](https://download.jonathangiles.net/downloads/scenic-view/scenicview-21-win.zip)    |
+| MacOS    | [Download](https://download.jonathangiles.net/downloads/scenic-view/scenicview-21-mac.zip)    |
+| Linux    | [Download](https://download.jonathangiles.net/downloads/scenic-view/scenicview-21-linux.zip)  |
 
 You can also download platform-independent releases [JDK 8](https://download.jonathangiles.net/downloads/scenic-view/scenic-view-8.7.0.zip) and [JDK 9](https://download.jonathangiles.net/downloads/scenic-view/scenic-view-9.0.0.zip).
 
 ## Java Version
 
-Scenic View has releases for JDK 8, JDK 9, and JDK 11:
+Scenic View has releases for JDK 8, JDK 9, JDK 11, and JDK 21:
 
 - The JDK 8 release is in maintenance mode. No active development is ongoing, and the code exists in the jdk8 branch.
 - The JDK 9 release is deprecated, and developers are encouraged to use either the JDK 8 release or the JDK 11 release.
-- The JDK 11 release is the actively developed branch, and the code exists in the master branch.
+- The JDK 21 releases are the actively developed branch, and the code exists in the master branch.
 
-For more information about JavaFX 11, see https://openjfx.io/openjfx-docs/.
+For more information about JavaFX, see https://openjfx.io/openjfx-docs/.
 
 ## Scenic View for JDK 11+
 
 ### How to build
 
-Install a valid Java 11 version, and set `JAVA_HOME` accordingly.
+Install a valid Java 17+ version, and set `JAVA_HOME` accordingly.
 
-The project is managed by gradle, so is not necessary to download the JavaFX 11 SDK. 
+The project is managed by gradle, so is not necessary to download the JavaFX 21.0.1 SDK.
 
 To build the project, type:
 
@@ -54,7 +54,7 @@ You can also create a zipped version of that image for distribution:
 
 Download the Scenic View custom image for your platform from the above links. Unzip and then run: 
 
-	cd scenicview/bin
+	cd build/scenicview/bin
 	./scenicView
 
 Also, you can clone or download this project, and run Scenic View as stand-alone application:
@@ -71,7 +71,7 @@ Then run a JavaFX application and it will be detected by Scenic View.
 Alternatively, you can also run the `scenicview.jar` in any platform, providing that JDK 11 and JavaFX SDK 11 are installed:
 
 	cd build/libs/
-	java --module-path /path-to/javafx-11-sdk/lib --add-modules javafx.web,javafx.fxml,javafx.swing -jar scenicview.jar
+	java --module-path /path-to/javafx-21.0.1-sdk/lib --add-modules javafx.web,javafx.fxml,javafx.swing -jar scenicview.jar
 
 ##### Notes
 
@@ -90,7 +90,7 @@ For instance, if you are running a gradle project, add the jar to a `libs` folde
 
         plugins {
             id 'application'
-            id 'org.openjfx.javafxplugin' version '0.0.7'
+            id 'org.openjfx.javafxplugin' version '0.1.0'
         }
 
         repositories {
@@ -102,6 +102,7 @@ For instance, if you are running a gradle project, add the jar to a `libs` folde
         }
 
         javafx {
+            version = '21.0.1'
             modules = ['javafx.web', 'javafx.fxml', 'javafx.swing']
         }
 

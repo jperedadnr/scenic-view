@@ -15,18 +15,30 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        java: [11.0.15]
+        java: ['11', '17', '21']
       fail-fast: false
       max-parallel: 4
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+      
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+      
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew jlinkZip
+
+      - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
+        name: Azure Blob Upload
+        with:
+          connection_string: ${{ secrets.ConnectionString }}
+          container_name: downloads
+          source_folder: build/dist
+          destination_folder: scenic-view
+          delete_if_exists: true
