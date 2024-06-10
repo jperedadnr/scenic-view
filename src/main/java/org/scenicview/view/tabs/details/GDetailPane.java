@@ -140,11 +140,10 @@ public class GDetailPane extends TitledPane {
         // return;
         // }
         currentFilter = text;
-
         /**
          * Make this more clean
          */
-        gridpane.getChildren().clear();
+//        gridpane.getChildren().clear();
         final List<Node> nodes = paneNodes;
         int row = 0;
         for (int i = 0; i < nodes.size(); i++) {
@@ -161,7 +160,7 @@ public class GDetailPane extends TitledPane {
             if (valid && label.isVisible()) {
                 GridPane.setConstraints(label, LABEL_COLUMN, row);
                 GridPane.setConstraints(g, VALUE_COLUMN, row);
-                gridpane.getChildren().addAll(label, g);
+//                gridpane.getChildren().addAll(label, g);
                 row++;
             }
         }
