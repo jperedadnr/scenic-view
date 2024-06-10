@@ -2,6 +2,7 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.1.0'
     id 'org.beryx.jlink' version '3.0.1'
+    id 'maven-publish'
 }
 
 application {
@@ -9,7 +10,7 @@ application {
     mainModule = "org.scenicview.scenicview"
 }
 group = 'org.scenic-view'
-version = '22-ea'
+version = '22.0.1'
 
 defaultTasks 'install'
 
@@ -72,5 +73,18 @@ tasks.jlink.doLast {
     copy {
         from "${buildDir}/libs/scenicview.jar"
         into "${buildDir}/scenicview/lib"
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+
+            from components.java
+
+            pom {
+                name = "Scenic View"
+            }
+        }
     }
 }
